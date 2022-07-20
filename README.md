@@ -18,3 +18,13 @@ GLOBAL OPTIONS:
    --web.listen-address value  Address to listen on for web interface and telemetry. (default: ":9116") [$LISTEN_ADDRESS]
 
 ```
+
+## Example config
+
+**config.yaml**
+
+```yaml
+exoscale_config:
+  key: 'EXO...'
+  secret: '...'
+```
