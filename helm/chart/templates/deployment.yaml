@@ -1,0 +1,82 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: "{{ template "exoscale-exporter.name" . }}"
+  labels:
+    app: "{{ template "exoscale-exporter.name" . }}"
+spec:
+  selector:
+    matchLabels:
+      app: "{{ template "exoscale-exporter.name" . }}"
+  replicas: {{ .Values.replicas }}
+  strategy:
+{{ toYaml .Values.strategy | trim | indent 4 }}
+  template:
+    metadata:
+      name: "{{ template "exoscale-exporter.name" . }}"
+      labels:
+        app: "{{ template "exoscale-exporter.name" . }}"
+{{- if .Values.labels }}
+{{ toYaml .Values.labels | indent 8 }}
+{{- end }}
+{{- if .Values.annotations }}
+      annotations:
+{{ toYaml .Values.annotations | indent 8 }}
+{{- end }}
+    spec:
+      {{- if .Values.schedulerName }}
+      schedulerName: "{{ .Values.schedulerName }}"
+      {{- end }}
+      securityContext:
+{{ toYaml .Values.podSecurityContext | indent 8 }}
+      {{- with .Values.tolerations }}
+      tolerations:
+{{ toYaml . | indent 6 }}
+      {{- end }}
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+{{ toYaml . | indent 8 }}
+      {{- end }}
+      {{- with .Values.nodeAffinity }}
+      affinity:
+{{ toYaml . | indent 8 }}
+      {{- end }}
+      terminationGracePeriodSeconds: {{ .Values.terminationGracePeriod }}
+      {{- if .Values.imagePullSecrets }}
+      imagePullSecrets:
+{{ toYaml .Values.imagePullSecrets | indent 8 }}
+      {{- end }}
+      containers:
+        - name: "{{ template "exoscale-exporter.name" . }}"
+          securityContext:
+{{ toYaml .Values.securityContext | indent 12 }}
+          image: "{{ .Values.image.repository }}:{{ default .Chart.AppVersion .Values.image.tag }}"
+          imagePullPolicy: "{{ .Values.imagePullPolicy }}"
+          args:
+            - --config.file
+            - "/config/config.yaml"
+          ports:
+            - name: http
+              containerPort: 9116
+          livenessProbe:
+            httpGet:
+              path: /metrics
+              port: http
+{{ toYaml .Values.livenessProbe | indent 12 }}
+          readinessProbe:
+            httpGet:
+              path: /metrics
+              port: http
+{{ toYaml .Values.readinessProbe | indent 12 }}
+          volumeMounts:
+            - mountPath: /config
+              name: config
+          resources:
+{{ toYaml .Values.resources | indent 12 }}
+      volumes:
+        - name: config
+          secret:
+            secretName: "{{ .Values.config.secretName }}"
+            items:
+              - key: "{{ .Values.config.key }}"
+                path: config.yaml

@@ -1,0 +1,76 @@
+replicas: 1
+
+image:
+  repository: ghcr.io/squarefactory/exoscale_exporter
+  tag: 1.0.0
+imagePullPolicy: IfNotPresent
+
+strategy:
+  type: RollingUpdate
+  rollingUpdate:
+    maxSurge: 1
+    maxUnavailable: 1
+
+labels: {}
+annotations: {}
+
+## Use an alternate scheduler.
+## ref: https://kubernetes.io/docs/tasks/administer-cluster/configure-multiple-schedulers/
+##
+schedulerName: ''
+
+podSecurityContext: {}
+tolerations: []
+nodeSelector: {}
+affinity: {}
+
+terminationGracePeriodSeconds: 5
+
+imagePullSecrets: {}
+
+livenessProbe:
+  failureThreshold: 3
+  initialDelaySeconds: 10
+  periodSeconds: 10
+  timeoutSeconds: 5
+
+readinessProbe:
+  failureThreshold: 3
+  initialDelaySeconds: 10
+  periodSeconds: 10
+  successThreshold: 3
+  timeoutSeconds: 5
+
+resources:
+  {}
+  # requests:
+  #   cpu: '50m'
+  #   memory: '56Mi'
+  # limits:
+  #   memory: '56Mi'
+
+service:
+  enabled: true
+  type: ClusterIP
+
+ingress:
+  enabled: false
+  ingressClass: ''
+
+  annotations: {}
+
+  hosts:
+    []
+    # - exoscale-exporter.example.com
+
+  path: /
+
+  tls:
+    []
+    # - secretName: exoscale-exporter.example.com-secret
+    #   hosts:
+    #     - exoscale-exporter.example.com
+
+config:
+  secretName: ''
+  key: config.yaml
