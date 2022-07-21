@@ -5,12 +5,14 @@ import (
 	"time"
 
 	"github.com/SquareFactory/exoscale_exporter/log"
+	"github.com/exoscale/egoscale"
 	"github.com/prometheus/client_golang/prometheus"
 	"go.uber.org/zap"
 )
 
 type Collector struct {
 	computeAPI *ComputeAPI
+	vms        []egoscale.VirtualMachine
 }
 
 func NewCollector(computeAPI *ComputeAPI) *Collector {
@@ -19,6 +21,7 @@ func NewCollector(computeAPI *ComputeAPI) *Collector {
 	}
 	return &Collector{
 		computeAPI: computeAPI,
+		vms:        make([]egoscale.VirtualMachine, 0),
 	}
 }
 
@@ -35,7 +38,29 @@ func (c *Collector) RecordMetrics() {
 				return
 			}
 
-			for _, vm := range vms {
+			// Find extra
+			for _, cachedVM := range c.vms {
+				isExtra := true
+				for _, vm := range vms {
+					if cachedVM.ID == vm.ID {
+						isExtra = false
+						break
+					}
+				}
+				// Extra vm detected
+				if isExtra {
+					lifetimeGauge.Delete(prometheus.Labels{
+						"instance": cachedVM.DisplayName,
+						"id":       cachedVM.ID.String(),
+					})
+				}
+			}
+
+			// Store in cache
+			c.vms = make([]egoscale.VirtualMachine, len(vms))
+			copy(c.vms, vms)
+
+			for _, vm := range c.vms {
 				lifetime, err := ComputeLifetime(vm)
 				if err != nil {
 					log.Logger.Error("ComputeLifetime thrown an error", zap.Error(err))
