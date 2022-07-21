@@ -6,6 +6,6 @@ maintainers:
     name: Marc Nguyen
 type: application
 version: 0.1.0
-appVersion: '1.0.1'
+appVersion: '1.0.2'
 sources:
   - https://github.com/SquareFactory/exoscale_exporter
