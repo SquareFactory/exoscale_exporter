@@ -1,6 +1,6 @@
 module github.com/SquareFactory/exoscale_exporter
 
-go 1.18
+go 1.19
 
 require (
 	github.com/exoscale/egoscale v0.89.0
