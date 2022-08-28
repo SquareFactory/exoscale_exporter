@@ -6,7 +6,7 @@ require (
 	github.com/exoscale/egoscale v0.90.0
 	github.com/prometheus/client_golang v1.13.0
 	github.com/urfave/cli/v2 v2.11.2
-	go.uber.org/zap v1.22.0
+	go.uber.org/zap v1.23.0
 	gopkg.in/yaml.v3 v3.0.1
 )
 
