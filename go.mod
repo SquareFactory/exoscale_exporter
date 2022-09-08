@@ -3,7 +3,7 @@ module github.com/SquareFactory/exoscale_exporter
 go 1.19
 
 require (
-	github.com/exoscale/egoscale v0.90.0
+	github.com/exoscale/egoscale v0.90.1
 	github.com/prometheus/client_golang v1.13.0
 	github.com/urfave/cli/v2 v2.14.0
 	go.uber.org/zap v1.23.0
@@ -19,6 +19,8 @@ require (
 	github.com/gofrs/uuid v4.2.0+incompatible // indirect
 	github.com/golang/protobuf v1.5.2 // indirect
 	github.com/google/uuid v1.3.0 // indirect
+	github.com/hashicorp/go-cleanhttp v0.5.1 // indirect
+	github.com/hashicorp/go-retryablehttp v0.7.1 // indirect
 	github.com/matttproud/golang_protobuf_extensions v1.0.1 // indirect
 	github.com/pmezard/go-difflib v1.0.0 // indirect
 	github.com/prometheus/client_model v0.2.0 // indirect
