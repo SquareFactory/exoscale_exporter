@@ -3,7 +3,7 @@ module github.com/SquareFactory/exoscale_exporter
 go 1.19
 
 require (
-	github.com/exoscale/egoscale v0.90.1
+	github.com/exoscale/egoscale v0.90.2
 	github.com/prometheus/client_golang v1.13.0
 	github.com/urfave/cli/v2 v2.16.3
 	go.uber.org/zap v1.23.0
