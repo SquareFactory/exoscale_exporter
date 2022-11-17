@@ -79,6 +79,8 @@ github.com/exoscale/egoscale v0.90.2 h1:oGSJy5Dxbcn5m5F0/DcnU4WXJg+2j3g+UgEu4yyK
 github.com/exoscale/egoscale v0.90.2/go.mod h1:NDhQbdGNKwnLVC2YGTB6ds9WIPw+V5ckvEEV8ho7pFE=
 github.com/exoscale/egoscale v0.90.4 h1:JXGFzrHPOUlBO3/1IDCRt8TtyxmXgmRvu8ghS2VijoA=
 github.com/exoscale/egoscale v0.90.4/go.mod h1:BAb9p4rmyU+Wl400CJZO5270H2sXtdsZjLcm5xMKkz4=
+github.com/exoscale/egoscale v0.91.0 h1:paq7Eap+SzuI+ml/CwwgEPq5mFmOA9fVF/YUParo6Bs=
+github.com/exoscale/egoscale v0.91.0/go.mod h1:BAb9p4rmyU+Wl400CJZO5270H2sXtdsZjLcm5xMKkz4=
 github.com/getkin/kin-openapi v0.94.0/go.mod h1:LWZfzOd7PRy8GJ1dJ6mCU6tNdSfOwRac1BUPam4aw6Q=
 github.com/ghodss/yaml v1.0.0/go.mod h1:4dBDuWmgqj2HViK6kFavaiC9ZROes6MMH2rRYeMEF04=
 github.com/gin-contrib/sse v0.1.0/go.mod h1:RHrZQHXnP2xjPF+u1gW/2HnVO7nvIa9PG3Gm+fLHvGI=
