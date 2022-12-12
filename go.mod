@@ -5,7 +5,7 @@ go 1.19
 require (
 	github.com/exoscale/egoscale v0.91.0
 	github.com/prometheus/client_golang v1.14.0
-	github.com/urfave/cli/v2 v2.23.6
+	github.com/urfave/cli/v2 v2.23.7
 	go.uber.org/zap v1.24.0
 	gopkg.in/yaml.v3 v3.0.1
 )
