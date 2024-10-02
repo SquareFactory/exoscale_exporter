@@ -11,7 +11,7 @@ FROM alpine as certs
 RUN apk update && apk add ca-certificates
 
 # ---
-FROM docker.io/library/busybox:1.36.1-musl
+FROM docker.io/library/busybox:1.37.0-musl
 
 ENV TINI_VERSION v0.19.0
 ADD https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini-static-muslc-amd64 /tini
