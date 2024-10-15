@@ -6,7 +6,7 @@ toolchain go1.23.0
 
 require (
 	github.com/exoscale/egoscale v0.102.4
-	github.com/prometheus/client_golang v1.20.0
+	github.com/prometheus/client_golang v1.20.5
 	github.com/urfave/cli/v2 v2.27.4
 	go.uber.org/zap v1.27.0
 	gopkg.in/yaml.v3 v3.0.1
