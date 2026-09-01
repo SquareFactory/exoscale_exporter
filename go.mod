@@ -2,7 +2,7 @@ module github.com/SquareFactory/exoscale_exporter
 
 go 1.22
 
-toolchain go1.23.0
+toolchain go1.27.1
 
 require (
 	github.com/exoscale/egoscale v0.102.4
